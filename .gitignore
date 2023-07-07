@@ -1,5 +1,2 @@
-# byte-compiled / optimized / DLL files
 __pycache__/
-
-# virtual environment
 immo_scraper_env/

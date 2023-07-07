@@ -16,8 +16,7 @@ def get_ids_from_page(page, property_types, session):
     """
     ids = []
     for prop_type in property_types:
-        # exclude lifeannuity
-        url_lists = "https://www.immoweb.be/en/search-results/%s/for-sale?countries=BE&page=%s&orderBy=newest" % (prop_type, page)
+        url_lists = "https://www.immoweb.be/en/search-results/%s/for-sale?countries=BE&isALifeAnnuitySale=false&page=%s&orderBy=newest" % (prop_type, page)
         r = session.get(url_lists)
         for listing in r.json()["results"]:
             ids.append(listing['id'])
