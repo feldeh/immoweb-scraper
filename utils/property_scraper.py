@@ -20,17 +20,20 @@ def get_js_data(js_data, property_data):
     property_data["transactionSubtype"] = js_data["transaction"]["subtype"]
     if js_data["transaction"]["sale"] != None:
         property_data["price"] = js_data["transaction"]["sale"]["price"]
+        property_data["isSubjectToVat"] = js_data["transaction"]["sale"]["isSubjectToVat"]
+        property_data["isFurnished"] = js_data["transaction"]["sale"]["isFurnished"]
     elif js_data["transaction"]["rental"] != None:
         property_data["price"] = js_data["transaction"]["rental"]["price"]
     else:
         property_data["price"] = None
+
     # get property data
     property = ["type", "subtype", "location",
                 "bedroomCount", "netHabitableSurface", "building", "hasLift", "kitchen",
                 "hasGarden", "gardenSurface", "hasTerrace", "terraceSurface", "land",
                 "fireplaceExists", "hasSwimmingPool", "hasAirConditioning",
                 "bathroomCount", "showerRoomCount", "toiletCount",
-                "parkingCountIndoor", "parkingCountOutdoor", "parkingCountClosedBox"]
+                "parkingCountIndoor", "parkingCountOutdoor"]
     for prop in property:
         if prop == "location":
             loc = ["country", "region", "province", "district", "locality",
@@ -56,6 +59,7 @@ def get_js_data(js_data, property_data):
                 property_data[prop] = None
         else:
             property_data[prop] = js_data["property"][prop]
+
     # get energy consumption data
     if js_data["transaction"]["certificates"] != None:
         property_data["primaryEnergyConsumptionPerSqm"] = js_data["transaction"]["certificates"]["primaryEnergyConsumptionPerSqm"]
@@ -64,30 +68,40 @@ def get_js_data(js_data, property_data):
         property_data["primaryEnergyConsumptionPerSqm"] = None
         property_data["epcScore"] = None
     if js_data["property"]["energy"] != None:
+        property_data["heatingType"] = js_data["property"]["energy"]["heatingType"]
         property_data["hasDoubleGlazing"] = js_data["property"]["energy"]["hasDoubleGlazing"]
     else:
         property_data["hasDoubleGlazing"] = None
+        property_data["heatingType"] = None
+
     # get sale type
     sale_type = None
     if js_data["flags"]["isPublicSale"]:
-        sale_type = "PublicSale"
+        sale_type = "publicSale"
+    elif js_data["flags"]["isNewlyBuilt"]:
+        sale_type = "newlyBuilt"
     elif js_data["flags"]["isNotarySale"]:
-        sale_type = "NotarySale"
-    elif js_data["flags"]["isLifeAnnuitySale"]:
-        sale_type = "LifeAnnuitySale"
-    elif js_data["flags"]["isAnInteractiveSale"]:
-        sale_type = "AnInteractiveSale"
+        sale_type = "notarySale"
     elif js_data["flags"]["isInvestmentProject"]:
-        sale_type = "InvestmentProject"
+        sale_type = "investmentProject"
     elif js_data["flags"]["isNewRealEstateProject"]:
-        sale_type = "NewRealEstateProject"
+        sale_type = "newRealEstateProject"
     property_data["saleType"] = sale_type
+
     # publication date
     property_data["creationDate"] = None
     property_data["lastModificationDate"] = None
     if js_data["publication"] != None:
         property_data["creationDate"] = js_data["publication"]["creationDate"]
         property_data["lastModificationDate"] = js_data["publication"]["lastModificationDate"]
+
+    # page stats
+    if js_data["statistics"] != None:
+        property_data['bookmarkCount'] = js_data["statistics"]["bookmarkCount"]
+        property_data['viewCount'] = js_data["statistics"]["viewCount"]
+    else:
+        property_data['bookmarkCount'] = None
+        property_data['viewCount'] = None
 
     return property_data
 
