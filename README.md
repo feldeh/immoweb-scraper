@@ -37,14 +37,14 @@ The Python-based tool uses [ImmoWeb](https://www.immoweb.be/en) website, the lea
 
 ## Installation
 
-1. Clone [ImmoEliza-DataScraper](https://github.com/vitaly-shalem/ImmoEliza-DataScraper) repository
-2. Change directory to the root of the repository
-3. Install required libraries by running `pip install -r requirements.txt`
+1. Clone the [immoweb-scraper](https://github.com/feldeh/immoweb-scraper) repository
+2. Navigate to the root of the repository
+3. Install the required libraries by running `pip install -r requirements.txt`
 
 ## Usage
 
 - Execute the script by running the command `python main.py` in the terminal.
-- This will scrape the property information from [ImmoWeb](https://www.immoweb.be/en) and store it in `data` directory in both `json` and `csv` formats.
+- This will scrape the property listing informations from [ImmoWeb](https://www.immoweb.be/en) and store them in the `data` directory in both `json` and `csv` formats.
 
 ## Timeline
 
@@ -52,7 +52,7 @@ This stage of the project lasted 4 days in the week of June 26-30, 2023.
 
 ## The Team
 
-The stage was made by group of Junior AI & Data Scientists (in alphabetical order):
+The project was made by a group of Junior AI & Data Scientists (in alphabetical order):
 
 - Félicien De Hertogh [LinkedIn](https://www.linkedin.com/in/feliciendehertogh/) | [GitHub](https://github.com/feldeh)
 - César E. Mendoza V. [LinkedIn](https://www.linkedin.com/in/mendoce24/) | [GitHub](https://github.com/mendoce24)
@@ -61,6 +61,6 @@ The stage was made by group of Junior AI & Data Scientists (in alphabetical orde
 
 ## Instruction
 
-The stage was made under the supervision of [Vanessa Rivera Quiñones](https://www.linkedin.com/in/vriveraq/) and [Samuel Borms](https://www.linkedin.com/in/sam-borms/?originalSubdomain=be)
+The project was completed under the supervision of [Vanessa Rivera Quiñones](https://www.linkedin.com/in/vriveraq/) and [Samuel Borms](https://www.linkedin.com/in/sam-borms/?originalSubdomain=be)
 
 Gent | June 30, 2021
